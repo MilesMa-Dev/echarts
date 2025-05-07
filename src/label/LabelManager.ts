@@ -402,7 +402,7 @@ class LabelManager {
                 label.setStyle(key, layoutOption[key] != null ? layoutOption[key] : defaultLabelAttr.style[key]);
             }
 
-
+            layoutOption.draggable = true;
             if (layoutOption.draggable) {
                 label.draggable = true;
                 label.cursor = 'move';
