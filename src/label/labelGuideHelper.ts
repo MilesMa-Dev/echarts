@@ -397,7 +397,21 @@ export function updateLabelLinePoints(
 
     limitTurnAngle(points, labelLineModel.get('minTurnAngle'));
 
-    labelLine.setShape({ points });
+    // 计算标签与坐标点的距离
+    const labelX = label.x;
+    const labelY = label.y;
+    const pointX = points[0][0];
+    const pointY = points[0][1];
+    const distance = Math.sqrt(Math.pow(labelX - pointX, 2) + Math.pow(labelY - pointY, 2));
+
+    // 根据距离决定是否显示引导线
+    if (distance > 10) {
+        labelLine.setShape({ points });
+        labelLine.ignore = false;
+    }
+    else {
+        labelLine.ignore = true;
+    }
 }
 
 // Temporal variable for the limitTurnAngle function
